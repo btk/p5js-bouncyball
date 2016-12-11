@@ -1,19 +1,28 @@
-var sketch = function(p) {
+var x = 0;
+var y = 0;
+var xspeed = 20;
+var yspeed = 10;
 
-  var canvas;
-  var sketchWidth = window.innerWidth;
-  var sketchHeight = window.innerHeight;
 
-  p.setup = function() {
-    var canvas = p.createCanvas(sketchWidth, sketchHeight);
-    canvas.parent('sketch');
-  };
+function setup() {
+    createCanvas(windowWidth, windowHeight);
+    background(0);
+}
 
-  p.draw = function() {
-    p.background(0, 10);
-    p.rect(p.random(p.width), p.random(p.height), 10, 10);
-  };
+function draw() {
+    var d = random(5, 20);
 
-};
+    fill(random(100, 250), random(100, 250), random(100, 250));
+    ellipse(x, y, d, d);
 
-var myp5 = new p5(sketch);
+    x = x + xspeed;
+    if (x > windowWidth || x < 0) {
+        xspeed = -xspeed;
+    }
+
+    y = y + yspeed;
+    if (y > windowHeight || y < 0) {
+        yspeed = -yspeed;
+    }
+
+}
